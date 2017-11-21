@@ -1,0 +1,29 @@
+.navbar-header {
+  font-weight: bold;
+}
+
+.navbar-header .active {
+  font-weight: bolder;
+}
+
+.navbar-nav li a:focus,
+.navbar-nav li a:hover {
+  background-color: #e7e7e7 !important;
+}
+
+.navbar-nav li a.active {
+  color: #f2f4f7;
+  background-color: #696d72;
+}
+
+.navbar-right {
+  padding-right: 30px !important;
+}
+
+.inline {
+  display: inline-block;
+}
+
+.text-right {
+  float: right;
+}
