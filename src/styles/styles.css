@@ -27,3 +27,7 @@
 .text-right {
   float: right;
 }
+
+.panel-footer {
+  min-height: 40px;
+}

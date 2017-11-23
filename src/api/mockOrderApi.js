@@ -72,10 +72,8 @@ class OrderApi {
         if (order.items.length < minItemsLength) {
           reject("Items can not be empty");
         }
-
-        order.id = orders.length + 1;
+        order.id = (orders.length + 1).toString();
         orders.push(order);
-
         resolve(order);
       }, delay);
     });
@@ -91,8 +89,35 @@ class OrderApi {
           reject("Items can not be empty");
         }
 
-        orders.splice(order.id - 1, 1, order);
+        let orderIndex;
+        orders.map((iorder, index) => {
+          if (iorder.id === order.id) {
+            orderIndex = index;
+          }
+        });
+        orders.splice(orderIndex, 1, order);
+        resolve(order);
+      }, delay);
+    });
+  }
 
+  static processOrder(order) {
+    order = Object.assign({}, order);
+    order.processed = true;
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        // Simulate server-side validation
+        const minItemsLength = 1;
+        if (order.items.length < minItemsLength) {
+          reject("Items can not be empty");
+        }
+        let orderIndex;
+        orders.map((iorder, index) => {
+          if (iorder.id === order.id) {
+            orderIndex = index;
+          }
+        });
+        orders.splice(orderIndex, 1, order);
         resolve(order);
       }, delay);
     });
@@ -101,8 +126,14 @@ class OrderApi {
   static deleteOrder(orderId) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        orders.splice(orderId - 1, 1);
-        resolve();
+        let orderIndex;
+        orders.map((order, index) => {
+          if (order.id === orderId) {
+            orderIndex = index;
+          }
+        });
+        orders.splice(orderIndex, 1);
+        resolve(orderId);
       }, delay);
     });
   }
