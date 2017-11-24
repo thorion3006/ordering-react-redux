@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import * as types from "../constants/actionTypes";
 import orderApi from "../api/mockOrderApi";
 import { showLoading, hideLoading } from "react-redux-loading-bar";
